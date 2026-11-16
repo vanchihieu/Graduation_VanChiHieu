@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#FFFBEB"/>
+  <rect x="28" y="28" width="744" height="544" rx="22" stroke="#F59E0B" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="8 6"/>
+  <circle cx="400" cy="230" r="62" fill="#1E40AF" stroke="#FBBF24" stroke-width="3"/>
+  <text x="400" y="240" text-anchor="middle" fill="#FEF08A" font-family="'Montserrat', system-ui, sans-serif" font-size="26" font-weight="800">01</text>
+  <text x="400" y="348" text-anchor="middle" fill="#0F172A" font-family="'Montserrat', system-ui, sans-serif" font-size="26" font-weight="800">Khoác Lễ Phục Tân Kỹ Sư</text>
+  <text x="400" y="388" text-anchor="middle" fill="#475569" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="600" font-size="16">Thay bằng ảnh thật: public/images/1.jpg</text>
+  <text x="400" y="428" text-anchor="middle" fill="#1D4ED8" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="13">IUH • COMMENCEMENT 2026</text>
+</svg>

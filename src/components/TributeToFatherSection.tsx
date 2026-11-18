@@ -40,7 +40,7 @@ export const TributeToFatherSection: React.FC = () => {
         {/* Left Column: Clean Borderless Father Portrait + Bible Verse */}
         <div className="lg:col-span-5 flex flex-col justify-start space-y-4">
           <Tilt3DCard maxTilt={5}>
-            <div className="rounded-2xl bg-white overflow-hidden shadow-lg">
+            <div className="rounded-2xl bg-white overflow-hidden shadow-lg border border-amber-300/75">
               <div className="aspect-[4/4.4] w-full overflow-hidden bg-slate-100">
                 <SmartPhoto
                   src={tribute.fatherPhoto}

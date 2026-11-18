@@ -144,10 +144,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
         <div className="lg:col-span-5">
           <div className="mx-auto max-w-sm space-y-3">
 
-            {/* 3D Tilt Graduation Portrait */}
+            {/* 3D Tilt Graduation Portrait (Subtle hairline border) */}
             <Tilt3DCard maxTilt={7}>
-              <div className="rounded-2xl bg-gradient-to-br from-slate-900 via-blue-700 to-yellow-400 p-2.5 shadow-xl">
-                <div className="aspect-[4/4.2] w-full overflow-hidden rounded-xl bg-white border border-white/80">
+              <div className="rounded-2xl bg-white overflow-hidden shadow-lg border border-amber-300/75">
+                <div className="aspect-[4/4.2] w-full overflow-hidden bg-slate-100">
                   <SmartPhoto
                     src={INVITATION_CONFIG.graduate.heroPhoto}
                     fallback={INVITATION_CONFIG.graduate.heroFallback}
@@ -157,12 +157,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
                 </div>
 
                 {/* Clean Nameplate below photo */}
-                <div className="mt-2.5 rounded-xl bg-white p-3.5 flex items-center justify-between gap-2">
+                <div className="p-4 flex items-center justify-between gap-2 bg-white">
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-wider text-blue-700">
                       Tân Kỹ Sư IUH 2026 • KTPM
                     </p>
-                    <p className="font-display text-lg font-extrabold text-slate-900">
+                    <p className="font-display text-lg font-extrabold hero-name-modern">
                       {INVITATION_CONFIG.graduate.fullName}
                     </p>
                   </div>

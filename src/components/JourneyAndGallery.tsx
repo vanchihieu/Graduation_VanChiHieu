@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Award,
+  ChevronLeft,
+  ChevronRight,
   GitBranch,
   GitCommit,
   Maximize2,
@@ -59,8 +61,33 @@ const SCHOLARSHIP_PHOTOS: LightboxPhoto[] = [
   },
 ];
 
+const ALL_LIGHTBOX_PHOTOS: LightboxPhoto[] = [...FEATURED_PHOTOS, ...SCHOLARSHIP_PHOTOS];
+
 export const JourneyAndGallery: React.FC = () => {
-  const [lightboxPhoto, setLightboxPhoto] = useState<LightboxPhoto | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxIndex(null);
+      if (e.key === 'ArrowRight') {
+        setLightboxIndex((prev) =>
+          prev === null ? null : (prev + 1) % ALL_LIGHTBOX_PHOTOS.length
+        );
+      }
+      if (e.key === 'ArrowLeft') {
+        setLightboxIndex((prev) =>
+          prev === null
+            ? null
+            : (prev - 1 + ALL_LIGHTBOX_PHOTOS.length) % ALL_LIGHTBOX_PHOTOS.length
+        );
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [lightboxIndex]);
+
+  const activePhoto = lightboxIndex !== null ? ALL_LIGHTBOX_PHOTOS[lightboxIndex] : null;
 
   return (
     <div className="rounded-3xl glass-3d-shell p-5 sm:p-7 text-slate-900">
@@ -71,7 +98,7 @@ export const JourneyAndGallery: React.FC = () => {
             <p className="text-xs font-mono font-bold uppercase tracking-wider text-blue-700">
               KỶ NIỆM THỜI SINH VIÊN
             </p>
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold hero-name-modern leading-tight">
+            <h2 className="mt-2 font-display text-2xl sm:text-3xl font-extrabold hero-name-modern leading-tight">
               Dấu Ấn Học Tập &amp; Bạn Bè
             </h2>
           </div>
@@ -80,7 +107,7 @@ export const JourneyAndGallery: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {FEATURED_PHOTOS.map((photo, idx) => (
               <Tilt3DCard key={idx} maxTilt={4}>
-                <div className="rounded-2xl bg-white overflow-hidden shadow-md h-full flex flex-col">
+                <div className="rounded-2xl bg-white overflow-hidden shadow-md border border-blue-200/75 h-full flex flex-col">
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
                     <SmartPhoto
                       src={photo.src}
@@ -90,7 +117,7 @@ export const JourneyAndGallery: React.FC = () => {
                     />
                     <button
                       type="button"
-                      onClick={() => setLightboxPhoto(photo)}
+                      onClick={() => setLightboxIndex(idx)}
                       className="absolute top-2.5 right-2.5 rounded-lg bg-white/95 p-1.5 text-slate-900 shadow hover:bg-yellow-400 transition-colors"
                       title="Phóng to ảnh"
                       aria-label={`Phóng to ${photo.title}`}
@@ -130,7 +157,7 @@ export const JourneyAndGallery: React.FC = () => {
                   <button
                     key={idx}
                     type="button"
-                    onClick={() => setLightboxPhoto(item)}
+                    onClick={() => setLightboxIndex(FEATURED_PHOTOS.length + idx)}
                     className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-md transition-all"
                     title={item.title}
                   >
@@ -207,19 +234,33 @@ export const JourneyAndGallery: React.FC = () => {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      {lightboxPhoto && (
+      {/* Lightbox Modal với nút mũi tên chuyển ảnh trước / tiếp theo */}
+      {activePhoto && lightboxIndex !== null && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-4"
-          onClick={() => setLightboxPhoto(null)}
+          onClick={() => setLightboxIndex(null)}
         >
           <button
             type="button"
-            onClick={() => setLightboxPhoto(null)}
-            className="absolute top-5 right-5 rounded-full bg-yellow-400 p-2.5 text-slate-950 font-bold shadow-lg"
+            onClick={() => setLightboxIndex(null)}
+            className="absolute top-5 right-5 rounded-full bg-yellow-400 p-2.5 text-slate-950 font-bold shadow-lg hover:bg-yellow-300 transition-colors"
             aria-label="Đóng"
           >
             <X className="h-5 w-5" />
+          </button>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIndex(
+                (lightboxIndex - 1 + ALL_LIGHTBOX_PHOTOS.length) % ALL_LIGHTBOX_PHOTOS.length
+              );
+            }}
+            className="absolute left-3 sm:left-6 z-10 rounded-full bg-white/95 border border-slate-300 p-3 text-slate-900 shadow-xl hover:bg-yellow-400 transition-colors"
+            aria-label="Ảnh trước"
+          >
+            <ChevronLeft className="h-6 w-6" />
           </button>
 
           <div
@@ -228,19 +269,36 @@ export const JourneyAndGallery: React.FC = () => {
           >
             <div className="max-h-[72vh] rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden">
               <SmartPhoto
-                src={lightboxPhoto.src}
-                fallback={lightboxPhoto.fallback}
-                alt={lightboxPhoto.title}
+                src={activePhoto.src}
+                fallback={activePhoto.fallback}
+                alt={activePhoto.title}
                 className="max-h-[72vh] w-auto object-contain"
               />
             </div>
-            <div className="pt-3 px-2">
-              <h4 className="font-display text-lg font-bold text-slate-900">
-                {lightboxPhoto.title}
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-600">{lightboxPhoto.caption}</p>
+            <div className="pt-3 px-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h4 className="font-display text-lg font-bold text-blue-900">
+                  {activePhoto.title}
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-600">{activePhoto.caption}</p>
+              </div>
+              <span className="font-mono text-xs font-bold text-yellow-300 bg-slate-900 px-3 py-1 rounded-full shrink-0 w-fit">
+                {lightboxIndex + 1} / {ALL_LIGHTBOX_PHOTOS.length}
+              </span>
             </div>
           </div>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIndex((lightboxIndex + 1) % ALL_LIGHTBOX_PHOTOS.length);
+            }}
+            className="absolute right-3 sm:right-6 z-10 rounded-full bg-white/95 border border-slate-300 p-3 text-slate-900 shadow-xl hover:bg-yellow-400 transition-colors"
+            aria-label="Ảnh tiếp theo"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
         </div>
       )}
     </div>

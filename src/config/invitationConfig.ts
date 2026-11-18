@@ -66,7 +66,7 @@ export const INVITATION_CONFIG = {
 
   music: {
     mp3Url: '/music/bgm.mp3',
-    trackTitle: 'Sống Như Những Đóa Hoa — Tạ Quang Thắng',
+    trackTitle: 'Pomp & Circumstance — Nhạc Lễ Tốt Nghiệp',
   },
 
   // Tùy chọn: Dán URL Google Apps Script Web App vào đây nếu muốn lưu RSVP về Google Sheets

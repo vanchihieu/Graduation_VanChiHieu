@@ -476,8 +476,7 @@ function buildCanonInDCeremonial(): SynthScore {
 
   const cycle1Notes = [74, 78, 81, 79, 78, 74, 78, 76, 74, 71, 74, 81, 79, 83, 81, 79];
   cycle1Notes.forEach((m, idx) => {
-    notes.push({ midi: m, beat: idx * 1.0, duration: 1.0, velocity: 0.78, voice: 'noble_lead' });
-    notes.push({ midi: m, beat: idx * 1.0, duration: 1.0, velocity: 0.72, voice: 'piano' });
+    notes.push({ midi: m, beat: idx * 1.0, duration: 1.25, velocity: 0.78, voice: 'piano' });
   });
 
   const cycle2Melody: Array<{ midi: number; beat: number; duration: number }> = [
@@ -512,14 +511,7 @@ function buildCanonInDCeremonial(): SynthScore {
   ];
 
   cycle2Melody.forEach((m) => {
-    notes.push({ midi: m.midi, beat: m.beat, duration: m.duration, velocity: 0.82, voice: 'piano' });
-    notes.push({
-      midi: m.midi - 12,
-      beat: m.beat,
-      duration: m.duration,
-      velocity: 0.65,
-      voice: 'noble_lead',
-    });
+    notes.push({ midi: m.midi, beat: m.beat, duration: m.duration, velocity: 0.85, voice: 'piano' });
   });
 
   return {
@@ -545,10 +537,10 @@ class SoundtrackController {
   private hornWave: PeriodicWave | null = null;
 
   private scores: SynthScore[] = [
-    buildSongNhuNhungDoaHoa(),
-    buildPompAndCircumstance(),
-    buildOdeToJoySymphony(),
     buildCanonInDCeremonial(),
+    buildOdeToJoySymphony(),
+    buildPompAndCircumstance(),
+    buildSongNhuNhungDoaHoa(),
   ];
   private currentTrackIndex = 0;
   private playing = false;

@@ -23,6 +23,7 @@ export interface GalleryItem {
 }
 
 export const INVITATION_CONFIG = {
+  productionUrl: 'https://graduation-van-chi-hieu.vercel.app/',
   graduate: {
     fullName: 'Văn Chí Hiếu',
     shortName: 'Chí Hiếu',
@@ -205,7 +206,7 @@ export const INVITATION_CONFIG = {
       },
       {
         heading: 'Những dòng ký ức ấm áp bên Ba',
-        body: 'Từ lúc con biết nhớ cho đến tận bây giờ, Ba luôn là người lo lắng, che chở và không để con phải thiếu thốn bất kỳ thứ gì. Suốt những năm tháng đi học đến tận khi hoàn thành 4 năm đại học, Ba luôn âm thầm gánh vác mọi vất vả để con có điều kiện tốt nhất theo đuổi con đường Kỹ sư Phần mềm, đồng thời dạy con biết sống ngay thẳng và giữ vững đức tin Công giáo. Tình thương bao la và sự hy sinh của Ba là điều con khắc cốt ghi tâm suốt đời.',
+        body: 'Từ lúc con biết nhớ cho đến tận bây giờ, Ba luôn là người lo lắng, che chở và không để con phải thiếu thốn bất kỳ thứ gì. Suốt những năm tháng đi học đến tận khi hoàn thành 4.5 năm đại học, Ba luôn âm thầm gánh vác mọi vất vả để con có điều kiện tốt nhất theo đuổi con đường Kỹ sư Phần mềm, đồng thời dạy con biết sống ngay thẳng và giữ vững đức tin Công giáo. Tình thương bao la và sự hy sinh của Ba là điều con khắc cốt ghi tâm suốt đời.',
       },
     ],
     prayerText:

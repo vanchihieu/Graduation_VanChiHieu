@@ -110,7 +110,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
           </div>
 
           {/* Live Countdown Bar */}
-          <div className="pt-1">
+          <div className="pt-3">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 mb-2">
               ⏳ Đếm ngược tới 09:30 Sáng • Thứ Tư 25/11/2026
             </p>

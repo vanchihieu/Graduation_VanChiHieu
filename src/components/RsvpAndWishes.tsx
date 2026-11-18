@@ -39,7 +39,7 @@ const STORAGE_KEY = 'iuh_grad_wishes_van_chi_hieu_2026';
 
 const QUICK_WISHES = [
   'Chúc Tân Kỹ sư Văn Chí Hiếu tốt nghiệp rực rỡ, sự nghiệp thăng hoa, lương nghìn đô! 🎓🚀',
-  'Chúc mừng Hiếu hoàn thành 4 năm IUH xuất sắc! Code mượt không bug, sớm lên Senior nhé! 💻✨',
+  'Chúc mừng Hiếu hoàn thành 4.5 năm IUH xuất sắc! Code mượt không bug, sớm lên Senior nhé! 💻✨',
   'Hẹn gặp Tân Kỹ sư sáng 25/11 lúc 09:30 tại IUH để chụp bộ ảnh để đời nha! 📸🎉',
   'Chúc bạn chân cứng đá mềm trên chặng đường mới, luôn giữ vững đam mê công nghệ! 🌟',
 ];

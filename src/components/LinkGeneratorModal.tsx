@@ -14,8 +14,15 @@ export const LinkGeneratorModal: React.FC<LinkGeneratorModalProps> = ({ isOpen, 
   const [copiedText, setCopiedText] = useState<boolean>(false);
 
   const generatedUrl = useMemo(() => {
-    if (typeof window === 'undefined') return '';
-    const url = new URL(window.location.origin + window.location.pathname);
+    const baseUrl =
+      typeof window !== 'undefined' &&
+      window.location.hostname !== 'localhost' &&
+      window.location.hostname !== '127.0.0.1' &&
+      window.location.hostname !== '[::1]'
+        ? window.location.origin + window.location.pathname
+        : INVITATION_CONFIG.productionUrl;
+
+    const url = new URL(baseUrl);
     if (guestName.trim()) {
       url.searchParams.set('to', guestName.trim());
     }

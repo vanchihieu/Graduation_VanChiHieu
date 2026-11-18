@@ -8,6 +8,7 @@ import {
   Move3d,
   Navigation,
   PhoneCall,
+  Quote,
   Sparkles,
   Terminal,
 } from 'lucide-react';
@@ -102,17 +103,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
             </div>
           </Tilt3DCard>
 
-          {/* Invitation Quote */}
-          <div className="rounded-2xl glass-3d-panel border-l-4 border-l-blue-600 px-4 py-3.5 mt-4">
-            <p className="text-slate-800 text-sm sm:text-base leading-relaxed font-medium">
-              “{INVITATION_CONFIG.graduate.quote}”
+          {/* Invitation Quote - Nổi bật với nền chuyển sắc ấm áp & highlight từ khóa */}
+          <div className="relative rounded-2xl bg-gradient-to-r from-amber-50 via-white to-blue-50/90 border border-amber-300 border-l-4 px-5 py-4 mt-4 shadow-md">
+            <p className="text-slate-900 text-sm sm:text-base leading-relaxed font-semibold">
+              “<span className="text-blue-900 font-extrabold">Bốn năm rưỡi thanh xuân</span> khép lại bằng{' '}
+              <span className="text-blue-800 font-bold">hàng vạn dòng code</span>, những đêm{' '}
+              <span className="text-amber-700 font-bold">chạy deadline không ngủ</span> và biết bao kỷ niệm đáng nhớ dưới mái trường IUH. Ngày khoác lên mình chiếc áo Tân Kỹ sư sẽ trọn vẹn và ý nghĩa hơn rất nhiều khi có{' '}
+              <span className="text-blue-900 font-extrabold ">
+                sự hiện diện chung vui của bạn
+              </span>!”
             </p>
           </div>
 
           {/* Live Countdown Bar */}
-          <div className="pt-3">
+          <div className="pt-5">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 mb-2">
-              ⏳ Đếm ngược tới 09:30 Sáng • Thứ Tư 25/11/2026
+              ⏳ Đếm ngược tới 16:00 Chiều • Thứ Ba 24/11/2026
             </p>
             <div className="grid grid-cols-4 gap-2.5 sm:gap-3">
               {[
@@ -177,7 +183,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
             {/* Light-Mode SWE Terminal Badge */}
             <div className="rounded-xl glass-3d-panel px-4 py-2.5 font-mono text-xs text-left">
               <p className="text-emerald-700 font-bold mt-0.5">
-                ✔ Hẹn gặp bạn lúc 09:30 Sáng • 25/11/2026
+                ✔ Hẹn gặp bạn lúc 16:00 Chiều • 24/11/2026
               </p>
             </div>
           </div>

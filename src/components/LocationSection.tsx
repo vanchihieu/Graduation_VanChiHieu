@@ -46,7 +46,7 @@ export const LocationSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="rounded-2xl bg-yellow-50/90 border border-yellow-300 p-4 space-y-2">
+            <div className="rounded-2xl bg-yellow-50/90 p-4 space-y-2 shadow-sm">
               <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
                 <Bike className="h-4 w-4 text-blue-700" />
                 <span>Lưu ý gửi xe &amp; di chuyển tại IUH</span>
@@ -65,9 +65,9 @@ export const LocationSection: React.FC = () => {
 
         </div>
 
-        {/* Right: Embedded Google Map */}
-        <div className="lg:col-span-7 rounded-2xl bg-gradient-to-br from-slate-900 via-blue-700 to-yellow-400 p-2.5 shadow-lg overflow-hidden min-h-[360px] flex flex-col">
-          <div className="relative flex-1 w-full overflow-hidden rounded-xl bg-slate-100 min-h-[340px]">
+        {/* Right: Clean Borderless Embedded Google Map */}
+        <div className="lg:col-span-7 rounded-2xl bg-white shadow-md overflow-hidden min-h-[360px] flex flex-col">
+          <div className="relative flex-1 w-full overflow-hidden bg-slate-100 min-h-[340px]">
             <iframe
               title="Bản đồ Đại học Công nghiệp TP.HCM - 12 Nguyễn Văn Bảo"
               src={INVITATION_CONFIG.event.googleMapsEmbed}

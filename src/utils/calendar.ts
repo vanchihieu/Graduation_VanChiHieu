@@ -1,8 +1,8 @@
 import { INVITATION_CONFIG } from '../config/invitationConfig';
 
-// 2026-11-25 09:30 UTC+7 = 2026-11-25 02:30 UTC
-const START_UTC = '20261125T023000Z';
-const END_UTC = '20261125T050000Z';
+// 2026-11-24 16:00 UTC+7 = 2026-11-24 09:00 UTC
+const START_UTC = '20261124T090000Z';
+const END_UTC = '20261124T113000Z';
 
 export function getGoogleCalendarUrl(): string {
   const title = `Lễ Tốt Nghiệp Đại Học — ${INVITATION_CONFIG.graduate.fullName} (IUH)`;
@@ -36,7 +36,7 @@ export function downloadIcsFile(): void {
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    `UID:grad-vanchihieu-20261125@iuh.edu.vn`,
+    `UID:grad-vanchihieu-20261124@iuh.edu.vn`,
     `DTSTAMP:${START_UTC}`,
     `DTSTART:${START_UTC}`,
     `DTEND:${END_UTC}`,

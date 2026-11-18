@@ -115,7 +115,7 @@ export const App: React.FC = () => {
             </div>
             <div>
               <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-blue-700 leading-none">
-                IUH • LỄ TỐT NGHIỆP 25.11.2026
+                IUH • LỄ TỐT NGHIỆP 24.11.2026
               </p>
               <p className="font-display text-base sm:text-lg font-black text-slate-900 leading-tight mt-0.5">
                 Tân Kỹ Sư {INVITATION_CONFIG.graduate.fullName}

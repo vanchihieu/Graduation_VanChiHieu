@@ -35,15 +35,15 @@ export const LinkGeneratorModal: React.FC<LinkGeneratorModalProps> = ({ isOpen, 
   const sampleMessage = useMemo(() => {
     const target = guestName.trim() || 'bạn';
     if (pronounMode === 'em') {
-      return `Dạ em chào ${target}! Sáng Thứ Tư ngày 25/11/2026 lúc 09:30 em có Lễ Tốt Nghiệp Kỹ sư Kỹ thuật Phần mềm tại ĐH Công Nghiệp TP.HCM (12 Nguyễn Văn Bảo, Gò Vấp). Em gửi thiệp mời thân mời ${target} ghé chung vui và chụp hình kỷ niệm cùng em ạ:\n👉 ${generatedUrl}`;
+      return `Dạ em chào ${target}! Chiều Thứ Ba ngày 24/11/2026 lúc 16:00 em có Lễ Tốt Nghiệp Kỹ sư Kỹ thuật Phần mềm tại ĐH Công Nghiệp TP.HCM (12 Nguyễn Văn Bảo, Gò Vấp). Em gửi thiệp mời thân mời ${target} ghé chung vui và chụp hình kỷ niệm cùng em ạ:\n👉 ${generatedUrl}`;
     }
     if (pronounMode === 'thayco') {
-      return `Dạ em kính chào ${target} ạ! Sáng Thứ Tư ngày 25/11/2026 lúc 09:30 là Lễ Tốt Nghiệp của em tại trường IUH. Em xin phép gửi thiệp mời điện tử kính mời ${target} cùng chung vui với em trong cột mốc ý nghĩa này ạ:\n👉 ${generatedUrl}`;
+      return `Dạ em kính chào ${target} ạ! Chiều Thứ Ba ngày 24/11/2026 lúc 16:00 là Lễ Tốt Nghiệp của em tại trường IUH. Em xin phép gửi thiệp mời điện tử kính mời ${target} cùng chung vui với em trong cột mốc ý nghĩa này ạ:\n👉 ${generatedUrl}`;
     }
     if (pronounMode === 'anh') {
-      return `Chào ${target} nha! Sáng Thứ Tư 25/11/2026 lúc 09:30 anh có Lễ Tốt Nghiệp tại trường IUH (12 Nguyễn Văn Bảo, Gò Vấp). Anh gửi thiệp mời thân mời ${target} qua chung vui chụp ảnh cùng anh nhé:\n👉 ${generatedUrl}`;
+      return `Chào ${target} nha! Chiều Thứ Ba 24/11/2026 lúc 16:00 anh có Lễ Tốt Nghiệp tại trường IUH (12 Nguyễn Văn Bảo, Gò Vấp). Anh gửi thiệp mời thân mời ${target} qua chung vui chụp ảnh cùng anh nhé:\n👉 ${generatedUrl}`;
     }
-    return `Chào ${target} ơi! 🎓 Sáng Thứ Tư 25/11/2026 lúc 09:30 mình chính thức tốt nghiệp Kỹ sư KTPM tại ĐH Công Nghiệp TP.HCM (12 Nguyễn Văn Bảo, Gò Vấp). Mình gửi thiệp mời riêng cho ${target}, rất mong bạn ghé chung vui & chụp ảnh kỷ niệm cùng Chí Hiếu nha:\n👉 ${generatedUrl}`;
+    return `Chào ${target} ơi! 🎓 Chiều Thứ Ba 24/11/2026 lúc 16:00 mình chính thức tốt nghiệp Kỹ sư KTPM tại ĐH Công Nghiệp TP.HCM (12 Nguyễn Văn Bảo, Gò Vấp). Mình gửi thiệp mời riêng cho ${target}, rất mong bạn ghé chung vui & chụp ảnh kỷ niệm cùng Chí Hiếu nha:\n👉 ${generatedUrl}`;
   }, [guestName, pronounMode, generatedUrl]);
 
   if (!isOpen) return null;

@@ -177,10 +177,6 @@ export const JourneyAndGallery: React.FC = () => {
         {/* Right: 4-Year Software Engineering Roadmap */}
         <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl glass-3d-panel p-5 text-slate-900">
           <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-3.5 py-1 text-xs font-mono font-bold text-yellow-300 mb-2 shadow-sm">
-              <GitBranch className="h-3.5 w-3.5" />
-              <span>git log --oneline iuh..2026</span>
-            </div>
             <h3 className="font-display text-2xl font-extrabold hero-name-modern mb-4">
               Hành Trình 4.5 Năm KTPM
             </h3>

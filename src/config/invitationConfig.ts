@@ -40,15 +40,15 @@ export const INVITATION_CONFIG = {
   },
 
   event: {
-    // ISO 8601 Vietnam Time (UTC+7): 09:30 Sáng ngày 25/11/2026
-    isoDateTime: '2026-11-25T09:30:00+07:00',
-    endIsoDateTime: '2026-11-25T12:00:00+07:00',
-    dayOfWeek: 'Thứ Tư',
-    dateDisplay: '25 . 11 . 2026',
-    day: 25,
+    // ISO 8601 Vietnam Time (UTC+7): 16:00 Chiều ngày 24/11/2026
+    isoDateTime: '2026-11-24T16:00:00+07:00',
+    endIsoDateTime: '2026-11-24T18:30:00+07:00',
+    dayOfWeek: 'Thứ Ba',
+    dateDisplay: '24 . 11 . 2026',
+    day: 24,
     month: 11,
     year: 2026,
-    timeDisplay: '09:30 Sáng',
+    timeDisplay: '16:00 Chiều',
     venueName: 'Trường Đại học Công nghiệp TP. Hồ Chí Minh (IUH)',
     meetupSpot: 'Khu vực Sân trường & Sảnh Hội trường trung tâm IUH',
     address: '12 Nguyễn Văn Bảo, Phường Hạnh Thông, Quận Gò Vấp, TP. Hồ Chí Minh',
@@ -118,12 +118,12 @@ export const INVITATION_CONFIG = {
         'Va chạm dự án thực tế, rèn giũa tư duy của một Software Engineer thực thụ và hoàn thành bảo vệ tốt nghiệp.',
     },
     {
-      hash: 'f251126',
+      hash: 'f241126',
       tag: 'v1.0.0-grad',
       year: '25/11/2026',
       title: 'Chính Thức Tốt Nghiệp — Tân Kỹ Sư KTPM',
       description:
-        'Deploy thành công cột mốc đại học! Sẵn sàng bước sang chương mới của sự nghiệp với sự chứng kiến của những người thân yêu.',
+        'Thành công cột mốc đại học! Sẵn sàng bước sang chương mới của sự nghiệp với sự chứng kiến của những người thân yêu.',
     },
   ] as JourneyCommit[],
 
@@ -173,7 +173,7 @@ export const INVITATION_CONFIG = {
       src: '/images/VanChiHieu_TrangPhuc.png',
       fallback: '/images/gallery-6.svg',
       title: 'Khoác Lễ Phục Tân Kỹ Sư KTPM',
-      caption: 'Hẹn gặp bạn lúc 09:30 sáng ngày 25/11/2026 tại IUH để cùng lưu lại những bức ảnh đẹp nhất!',
+      caption: 'Hẹn gặp bạn lúc 16:00 chiều ngày 24/11/2026 tại IUH để cùng lưu lại những bức ảnh đẹp nhất!',
       tag: 'Graduation 2026',
     },
   ] as GalleryItem[],

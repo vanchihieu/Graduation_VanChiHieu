@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, GraduationCap, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { Award, GraduationCap, Sparkles } from 'lucide-react';
 import { INVITATION_CONFIG } from '../config/invitationConfig';
 import { GuestGreeting } from '../utils/guestPersonalization';
 
@@ -50,25 +50,15 @@ export const WelcomeEnvelopeModal: React.FC<WelcomeEnvelopeModalProps> = ({ gues
             </p>
           </div>
 
-          {/* Open CTA */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          {/* Open CTA - Tông nhẹ nhàng thanh lịch để giữ tâm điểm chú ý ở tên khách mời phía trên */}
+          <div className="flex justify-center">
             <button
               type="button"
               onClick={() => onOpen(true)}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-slate-900 to-blue-700 px-6 py-4 text-base font-bold text-white shadow-lg hover:opacity-95 transition-all border border-yellow-400"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-blue-50/90 hover:bg-blue-100 px-8 py-3.5 text-sm sm:text-base font-bold text-blue-900 shadow-sm hover:scale-[1.01] transition-all border border-blue-200"
             >
-              <Sparkles className="w-5 h-5 text-yellow-300" />
-              <span>Mở Thiệp &amp; Bật Nhạc Lễ</span>
-              <Volume2 className="w-5 h-5 text-yellow-300" />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => onOpen(false)}
-              className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-700 hover:bg-slate-100 transition-colors"
-            >
-              <VolumeX className="w-4 h-4 text-slate-500" />
-              <span>Mở không nhạc</span>
+              <Sparkles className="w-4 h-4 text-amber-500" />
+              <span>Mở Thiệp Mời</span>
             </button>
           </div>
         </div>

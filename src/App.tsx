@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import confetti from 'canvas-confetti';
 import {
   Award,
@@ -47,6 +47,17 @@ export const App: React.FC = () => {
     if (typeof window === 'undefined') return false;
     return new URLSearchParams(window.location.search).get('host') === '1';
   });
+  const [cursorGlow, setCursorGlow] = useState<{ x: number; y: number }>({ x: -500, y: -500 });
+
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse') {
+        setCursorGlow({ x: e.clientX, y: e.clientY });
+      }
+    };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    return () => window.removeEventListener('pointermove', onMove);
+  }, []);
 
   const fireCelebration = () => {
     confetti({
@@ -100,6 +111,15 @@ export const App: React.FC = () => {
       {/* Nền WebGL 3D (Three.js) hiển thị rõ xuyên qua lớp thẻ kính */}
       <GraduationBackdrop3D enabled={true} />
 
+      {/* Soft Cursor Ambient Spotlight trên Desktop */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 hidden md:block transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(420px circle at ${cursorGlow.x}px ${cursorGlow.y}px, rgba(250, 204, 21, 0.14), rgba(59, 130, 246, 0.08) 45%, transparent 72%)`,
+        }}
+        aria-hidden="true"
+      />
+
       {/* Thiệp mở đầu */}
       {!envelopeOpened && (
         <WelcomeEnvelopeModal guest={guest} onOpen={handleOpenEnvelope} />
@@ -128,12 +148,19 @@ export const App: React.FC = () => {
             <button
               type="button"
               onClick={toggleMusic}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-white border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-800 shadow-sm hover:border-blue-600 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-800 shadow-sm hover:border-blue-600 transition-colors"
               title="Bật hoặc tắt nhạc lễ"
               aria-label="Bật hoặc tắt nhạc lễ"
             >
               {musicPlaying ? (
-                <Volume2 className="h-4 w-4 text-blue-700 shrink-0" />
+                <>
+                  <Volume2 className="h-4 w-4 text-blue-700 shrink-0" />
+                  <span className="flex items-end gap-0.5 h-3.5" aria-hidden="true">
+                    <span className="w-0.5 bg-blue-600 rounded-full animate-eq-1" />
+                    <span className="w-0.5 bg-amber-500 rounded-full animate-eq-2" />
+                    <span className="w-0.5 bg-blue-600 rounded-full animate-eq-3" />
+                  </span>
+                </>
               ) : (
                 <VolumeX className="h-4 w-4 text-slate-500 shrink-0" />
               )}

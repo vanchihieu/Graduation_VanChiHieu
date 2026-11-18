@@ -56,9 +56,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
         {/* Left: Bold, Clear, High-Impact Typography + Countdown */}
         <div className="lg:col-span-7 space-y-4.5 text-left">
-          {/* Guest Greeting Pill - Nền Xanh Hoàng Gia + Highlight tên Vàng Rực không xuống dòng */}
-          <div className="inline-flex items-center gap-2 rounded-2xl sm:rounded-full bg-gradient-to-r from-slate-900 via-blue-900 to-blue-800 border-2 border-yellow-400 px-4 py-2 shadow-md max-w-full">
-            <Sparkles className="h-4 w-4 text-yellow-300 shrink-0" />
+          {/* Guest Greeting Pill - Nền Xanh Hoàng Gia + Highlight tên Vàng Rực + Shimmer */}
+          <div className="stagger-1 shimmer-sweep inline-flex items-center gap-2 rounded-2xl sm:rounded-full bg-gradient-to-r from-slate-900 via-blue-900 to-blue-800 border-2 border-yellow-400 px-4 py-2 shadow-md max-w-full">
+            <Sparkles className="h-4 w-4 text-yellow-300 shrink-0 animate-pulse" />
             <span className="text-xs sm:text-sm font-semibold text-white leading-snug">
               {guest.invitePrefix}{' '}
               <strong className="text-yellow-300 font-extrabold whitespace-nowrap">
@@ -69,10 +69,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
           </div>
 
           {/* TITLE PLAQUE — To, rõ, sắc nét & cuốn hút */}
-          <Tilt3DCard maxTilt={3} className="rounded-2xl">
+          <Tilt3DCard maxTilt={3} className="rounded-2xl stagger-2">
             <div className="relative rounded-2xl glass-3d-panel p-5 sm:p-6">
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-                <span className="inline-flex items-center gap-1.5 rounded-full grad-title-badge px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
+                <span className="shimmer-sweep inline-flex items-center gap-1.5 rounded-full grad-title-badge px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
                   <Award className="h-4 w-4 text-yellow-300" />
                   Lễ Tốt Nghiệp Đại Học • 2026
                 </span>
@@ -104,7 +104,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
           </Tilt3DCard>
 
           {/* Invitation Quote - Nổi bật với nền chuyển sắc ấm áp & highlight từ khóa */}
-          <div className="relative rounded-2xl bg-gradient-to-r from-amber-50 via-white to-blue-50/90 border border-amber-300 border-l-4 px-5 py-4 mt-4 shadow-md">
+          <div className="stagger-3 relative rounded-2xl bg-gradient-to-r from-amber-50 via-white to-blue-50/90 border border-amber-300 border-l-4 px-5 py-4 mt-4 shadow-md">
             <p className="text-slate-900 text-sm sm:text-base leading-relaxed font-semibold">
               “<span className="text-blue-900 font-extrabold">Bốn năm rưỡi thanh xuân</span> khép lại bằng{' '}
               <span className="text-blue-800 font-bold">hàng vạn dòng code</span>, những đêm{' '}
@@ -116,7 +116,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ guest, onSelectTab }) 
           </div>
 
           {/* Live Countdown Bar */}
-          <div className="pt-5">
+          <div className="pt-5 stagger-4">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 mb-2">
               ⏳ Đếm ngược tới 16:00 Chiều • Thứ Ba 24/11/2026
             </p>

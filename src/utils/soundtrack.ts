@@ -27,8 +27,185 @@ interface SynthScore {
 }
 
 /**
- * TRACK 1 (MẶC ĐỊNH): POMP AND CIRCUMSTANCE — ELGAR ("LAND OF HOPE AND GLORY")
- * Bản nhạc nghi thức trao bằng tốt nghiệp đại học trang trọng & tự hào nhất thế giới!
+ * TRACK 1 (MẶC ĐỊNH): SỐNG NHƯ NHỮNG ĐÓA HOA (TẠ QUANG THẮNG)
+ * Phối âm Đại Dương Cầm + Dàn Dây Giao Hưởng dịu dàng, ấm áp & đầy nghị lực
+ */
+function buildSongNhuNhungDoaHoa(): SynthScore {
+  const notes: NoteEvent[] = [];
+  const pads: Array<{ midis: number[]; beat: number; duration: number }> = [];
+
+  // Vòng hợp âm chuẩn giọng Đô Trưởng (C Major): 16 ô nhịp x 4 phách = 64 phách
+  const barChords: Array<{ bass: number; arp: number[]; pad: number[] }> = [
+    // Verse (Bars 1-8): C -> G/B -> Am7 -> Em7 -> F -> C/E -> Dm7 -> G
+    { bass: 36, arp: [48, 55, 60, 64], pad: [48, 55, 64] },
+    { bass: 35, arp: [47, 55, 59, 62], pad: [47, 55, 62] },
+    { bass: 45, arp: [48, 52, 55, 60], pad: [45, 52, 60] },
+    { bass: 40, arp: [47, 52, 55, 59], pad: [40, 52, 59] },
+    { bass: 41, arp: [48, 53, 57, 60], pad: [41, 53, 60] },
+    { bass: 40, arp: [48, 55, 60, 64], pad: [48, 55, 64] },
+    { bass: 38, arp: [45, 50, 53, 60], pad: [38, 53, 60] },
+    { bass: 43, arp: [47, 50, 55, 59], pad: [43, 55, 59] },
+    // Chorus (Bars 9-16): Fmaj7 -> G6 -> Em7 -> Am7 -> Dm7 -> G7 -> C -> G
+    { bass: 41, arp: [48, 53, 57, 64], pad: [41, 53, 60] },
+    { bass: 43, arp: [47, 50, 55, 59], pad: [43, 55, 59] },
+    { bass: 40, arp: [47, 52, 55, 59], pad: [40, 52, 59] },
+    { bass: 45, arp: [48, 52, 55, 60], pad: [45, 52, 60] },
+    { bass: 38, arp: [45, 50, 53, 60], pad: [38, 53, 60] },
+    { bass: 43, arp: [47, 50, 55, 59], pad: [43, 55, 59] },
+    { bass: 36, arp: [48, 55, 60, 64], pad: [48, 55, 64] },
+    { bass: 43, arp: [47, 50, 55, 59], pad: [43, 55, 59] },
+  ];
+
+  barChords.forEach((bar, barIdx) => {
+    const b = barIdx * 4;
+    pads.push({ midis: bar.pad, beat: b, duration: 4 });
+    notes.push({ midi: bar.bass, beat: b, duration: 2.5, velocity: 0.62, voice: 'piano' });
+
+    // Rải hợp âm Piano 8 móc đơn mỗi ô nhịp nhẹ nhàng
+    for (let step = 0; step < 8; step++) {
+      const m = bar.arp[step % bar.arp.length];
+      notes.push({
+        midi: m,
+        beat: b + step * 0.5,
+        duration: 1.2,
+        velocity: step % 2 === 0 ? 0.44 : 0.32,
+        voice: 'piano',
+      });
+    }
+  });
+
+  // Giai điệu chính "Sống Như Những Đóa Hoa"
+  const melodyLine: Array<{ midi: number; beat: number; duration: number; accent?: boolean }> = [
+    // Verse (Bars 1-8): "Cuộc đời tôi là những nốt thăng trầm..."
+    { midi: 72, beat: 0.5, duration: 0.5 },
+    { midi: 74, beat: 1.0, duration: 0.5 },
+    { midi: 76, beat: 1.5, duration: 1.0, accent: true },
+    { midi: 74, beat: 2.5, duration: 0.5 },
+    { midi: 72, beat: 3.0, duration: 1.0 },
+    { midi: 71, beat: 4.5, duration: 0.5 },
+    { midi: 72, beat: 5.0, duration: 0.5 },
+    { midi: 74, beat: 5.5, duration: 1.5, accent: true },
+    { midi: 72, beat: 7.0, duration: 1.0 },
+
+    { midi: 69, beat: 8.5, duration: 0.5 },
+    { midi: 72, beat: 9.0, duration: 0.5 },
+    { midi: 76, beat: 9.5, duration: 1.0, accent: true },
+    { midi: 74, beat: 10.5, duration: 0.5 },
+    { midi: 72, beat: 11.0, duration: 1.0 },
+    { midi: 71, beat: 12.5, duration: 0.5 },
+    { midi: 69, beat: 13.0, duration: 0.5 },
+    { midi: 67, beat: 13.5, duration: 2.0, accent: true },
+
+    { midi: 69, beat: 16.5, duration: 0.5 },
+    { midi: 72, beat: 17.0, duration: 0.5 },
+    { midi: 74, beat: 17.5, duration: 1.0, accent: true },
+    { midi: 72, beat: 18.5, duration: 0.5 },
+    { midi: 69, beat: 19.0, duration: 1.0 },
+    { midi: 67, beat: 20.5, duration: 0.5 },
+    { midi: 72, beat: 21.0, duration: 0.5 },
+    { midi: 76, beat: 21.5, duration: 1.5, accent: true },
+    { midi: 74, beat: 23.0, duration: 1.0 },
+
+    { midi: 72, beat: 24.5, duration: 0.5 },
+    { midi: 74, beat: 25.0, duration: 0.5 },
+    { midi: 77, beat: 25.5, duration: 1.0, accent: true },
+    { midi: 76, beat: 26.5, duration: 0.5 },
+    { midi: 74, beat: 27.0, duration: 1.0 },
+    { midi: 74, beat: 28.5, duration: 1.5, accent: true },
+    { midi: 79, beat: 30.5, duration: 1.5 },
+
+    // Chorus (Bars 9-16): "Và tôi sống như đóa hoa này, tỏa ngát hương thơm cho đời..."
+    { midi: 76, beat: 32.0, duration: 0.5 },
+    { midi: 79, beat: 32.5, duration: 0.5 },
+    { midi: 81, beat: 33.0, duration: 1.0, accent: true },
+    { midi: 79, beat: 34.0, duration: 0.5 },
+    { midi: 76, beat: 34.5, duration: 0.5 },
+    { midi: 74, beat: 35.0, duration: 0.5 },
+    { midi: 72, beat: 35.5, duration: 0.5 },
+
+    { midi: 74, beat: 36.0, duration: 0.5 },
+    { midi: 76, beat: 36.5, duration: 0.5 },
+    { midi: 79, beat: 37.0, duration: 1.0, accent: true },
+    { midi: 76, beat: 38.0, duration: 0.5 },
+    { midi: 74, beat: 38.5, duration: 0.5 },
+    { midi: 72, beat: 39.0, duration: 1.0 },
+
+    // "Sống với nỗi khát khao rằng, được hiến dâng cho cuộc đời..."
+    { midi: 76, beat: 40.0, duration: 0.5 },
+    { midi: 79, beat: 40.5, duration: 0.5 },
+    { midi: 81, beat: 41.0, duration: 0.5 },
+    { midi: 84, beat: 41.5, duration: 1.0, accent: true },
+    { midi: 83, beat: 42.5, duration: 0.5 },
+    { midi: 81, beat: 43.0, duration: 0.5 },
+    { midi: 79, beat: 43.5, duration: 0.5 },
+
+    { midi: 76, beat: 44.0, duration: 0.5 },
+    { midi: 79, beat: 44.5, duration: 0.5 },
+    { midi: 81, beat: 45.0, duration: 1.0, accent: true },
+    { midi: 79, beat: 46.0, duration: 0.5 },
+    { midi: 76, beat: 46.5, duration: 0.5 },
+    { midi: 74, beat: 47.0, duration: 1.0 },
+
+    // "Hôm nay dẫu có gian nan, thì ngày mai là ngày tươi sáng hơn..."
+    { midi: 77, beat: 48.0, duration: 0.5 },
+    { midi: 76, beat: 48.5, duration: 0.5 },
+    { midi: 74, beat: 49.0, duration: 0.5 },
+    { midi: 72, beat: 49.5, duration: 0.5 },
+    { midi: 74, beat: 50.0, duration: 0.5 },
+    { midi: 76, beat: 50.5, duration: 1.5, accent: true },
+
+    { midi: 74, beat: 52.0, duration: 0.5 },
+    { midi: 72, beat: 52.5, duration: 0.5 },
+    { midi: 74, beat: 53.0, duration: 0.5 },
+    { midi: 76, beat: 53.5, duration: 0.5 },
+    { midi: 79, beat: 54.0, duration: 1.0, accent: true },
+    { midi: 76, beat: 55.0, duration: 0.5 },
+    { midi: 74, beat: 55.5, duration: 0.5 },
+
+    // "Tôi sẽ viết nên câu chuyện của cuộc đời riêng tôi..."
+    { midi: 72, beat: 56.0, duration: 0.5 },
+    { midi: 74, beat: 56.5, duration: 0.5 },
+    { midi: 76, beat: 57.0, duration: 0.5 },
+    { midi: 79, beat: 57.5, duration: 0.5 },
+    { midi: 81, beat: 58.0, duration: 1.0, accent: true },
+    { midi: 79, beat: 59.0, duration: 0.5 },
+    { midi: 76, beat: 59.5, duration: 0.5 },
+    { midi: 74, beat: 60.0, duration: 1.0 },
+    { midi: 72, beat: 61.0, duration: 2.8, accent: true },
+  ];
+
+  melodyLine.forEach((m) => {
+    notes.push({
+      midi: m.midi,
+      beat: m.beat,
+      duration: m.duration,
+      velocity: m.accent ? 0.9 : 0.78,
+      voice: 'piano',
+    });
+    if (m.beat >= 32) {
+      notes.push({
+        midi: m.midi,
+        beat: m.beat,
+        duration: m.duration,
+        velocity: m.accent ? 0.65 : 0.52,
+        voice: 'noble_lead',
+      });
+    }
+  });
+
+  return {
+    id: 'song-nhu-nhung-doa-hoa',
+    title: 'Sống Như Những Đóa Hoa',
+    subtitle: 'Tạ Quang Thắng — Phiên bản Piano & Giao hưởng',
+    bpm: 74,
+    totalBeats: 64,
+    notes,
+    pads,
+  };
+}
+
+/**
+ * TRACK 2: POMP AND CIRCUMSTANCE — ELGAR ("LAND OF HOPE AND GLORY")
  */
 function buildPompAndCircumstance(): SynthScore {
   const notes: NoteEvent[] = [];
@@ -368,6 +545,7 @@ class SoundtrackController {
   private hornWave: PeriodicWave | null = null;
 
   private scores: SynthScore[] = [
+    buildSongNhuNhungDoaHoa(),
     buildPompAndCircumstance(),
     buildOdeToJoySymphony(),
     buildCanonInDCeremonial(),

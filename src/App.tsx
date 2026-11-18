@@ -2,35 +2,34 @@ import React, { useMemo, useState } from 'react';
 import confetti from 'canvas-confetti';
 import {
   Award,
-  Calendar,
   Camera,
   ChevronLeft,
   ChevronRight,
   GraduationCap,
+  Heart,
   Link2,
   MapPin,
   PhoneCall,
-  SkipForward,
-  Sparkles,
   Volume2,
   VolumeX,
 } from 'lucide-react';
 import { INVITATION_CONFIG } from './config/invitationConfig';
 import { getGuestFromUrl } from './utils/guestPersonalization';
-import { MusicTrack, soundtrack } from './utils/soundtrack';
+import { soundtrack } from './utils/soundtrack';
 import { WelcomeEnvelopeModal } from './components/WelcomeEnvelopeModal';
 import { HeroSection } from './components/HeroSection';
-import { CountdownAndSchedule } from './components/CountdownAndSchedule';
 import { JourneyAndGallery } from './components/JourneyAndGallery';
 import { LocationSection } from './components/LocationSection';
+import { TributeToFatherSection } from './components/TributeToFatherSection';
 import { LinkGeneratorModal } from './components/LinkGeneratorModal';
+import { GraduationBackdrop3D } from './components/GraduationScene3D';
 
-type TabKey = 'main' | 'schedule' | 'gallery' | 'map';
+type TabKey = 'main' | 'gallery' | 'map' | 'tribute';
 
 const TABS: Array<{ key: TabKey; label: string; shortLabel: string; icon: React.ElementType }> = [
   { key: 'main', label: '1. Thiệp Mời Chính', shortLabel: 'Thiệp Mời', icon: Award },
-  { key: 'schedule', label: '2. Lịch Trình 25/11', shortLabel: 'Lịch Trình', icon: Calendar },
-  { key: 'gallery', label: '3. Kỷ Yếu & Hành Trình', shortLabel: 'Kỷ Yếu', icon: Camera },
+  { key: 'gallery', label: '2. Kỷ Yếu & Hành Trình', shortLabel: 'Kỷ Yếu', icon: Camera },
+  { key: 'tribute', label: '3. Ký Ức & Tri Ân Ba', shortLabel: 'Tri Ân Ba', icon: Heart },
   { key: 'map', label: '4. Bản Đồ IUH & Liên Hệ', shortLabel: 'Bản Đồ', icon: MapPin },
 ];
 
@@ -39,9 +38,11 @@ export const App: React.FC = () => {
   const [envelopeOpened, setEnvelopeOpened] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<TabKey>('main');
   const [musicPlaying, setMusicPlaying] = useState<boolean>(false);
-  const [currentTrack, setCurrentTrack] = useState<MusicTrack>(() =>
-    soundtrack.getCurrentTrack()
-  );
+  const isLocalMode = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const host = window.location.hostname;
+    return host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+  }, []);
   const [linkModalOpen, setLinkModalOpen] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
     return new URLSearchParams(window.location.search).get('host') === '1';
@@ -53,14 +54,14 @@ export const App: React.FC = () => {
       angle: 60,
       spread: 65,
       origin: { x: 0, y: 0.6 },
-      colors: ['#EAB308', '#2563EB', '#DC2626', '#10B981'],
+      colors: ['#FACC15', '#2563EB', '#181E29', '#FFFFFF'],
     });
     confetti({
       particleCount: 75,
       angle: 120,
       spread: 65,
       origin: { x: 1, y: 0.6 },
-      colors: ['#EAB308', '#2563EB', '#DC2626', '#10B981'],
+      colors: ['#FACC15', '#2563EB', '#181E29', '#FFFFFF'],
     });
   };
 
@@ -71,7 +72,6 @@ export const App: React.FC = () => {
     if (withMusic) {
       const ok = await soundtrack.play();
       setMusicPlaying(ok);
-      setCurrentTrack(soundtrack.getCurrentTrack());
     }
   };
 
@@ -80,16 +80,6 @@ export const App: React.FC = () => {
       soundtrack.pause();
       setMusicPlaying(false);
     } else {
-      const ok = await soundtrack.play();
-      setMusicPlaying(ok);
-      setCurrentTrack(soundtrack.getCurrentTrack());
-    }
-  };
-
-  const handleNextTrack = async () => {
-    const next = await soundtrack.nextTrack();
-    setCurrentTrack(next);
-    if (!musicPlaying) {
       const ok = await soundtrack.play();
       setMusicPlaying(ok);
     }
@@ -106,85 +96,69 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between text-slate-900">
+    <div className="relative min-h-screen flex flex-col justify-between text-slate-900">
+      {/* Nền WebGL 3D (Three.js) hiển thị rõ xuyên qua lớp thẻ kính */}
+      <GraduationBackdrop3D enabled={true} />
+
       {/* Thiệp mở đầu */}
       {!envelopeOpened && (
         <WelcomeEnvelopeModal guest={guest} onOpen={handleOpenEnvelope} />
       )}
 
-      {/* BRIGHT SUNLIT TOP BAR */}
-      <header className="border-b-2 border-amber-400 bg-white/95 shadow-md px-3 sm:px-6 py-2.5">
+      {/* TOP BAR - Đồng bộ màu Lễ Phục IUH 2026: Đen Than - Xanh Cobalt - Vàng Rực */}
+      <header className="relative z-20 border-b-2 border-yellow-400 bg-white/85 backdrop-blur-md shadow-sm px-3 sm:px-6 py-2.5">
         <div className="mx-auto max-w-6xl flex flex-wrap items-center justify-between gap-2.5">
           {/* Left: Brand */}
           <div className="flex items-center gap-2.5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-700 to-indigo-800 text-amber-300 font-bold shrink-0 shadow">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-blue-700 text-yellow-300 font-bold shrink-0 shadow border border-yellow-400">
               <GraduationCap className="h-6 w-6" />
             </div>
             <div>
-              <p className="text-[10px] font-mono font-extrabold uppercase tracking-wider text-blue-800 leading-none">
+              <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-blue-700 leading-none">
                 IUH • LỄ TỐT NGHIỆP 25.11.2026
               </p>
-              <p className="text-sm sm:text-base font-black uppercase text-slate-900 leading-tight mt-0.5">
+              <p className="font-display text-base sm:text-lg font-black text-slate-900 leading-tight mt-0.5">
                 Tân Kỹ Sư {INVITATION_CONFIG.graduate.fullName}
               </p>
             </div>
           </div>
 
-          {/* Right: Music Player + Firework + Create Link */}
+          {/* Right: Compact Sound Toggle + Local-only Invite Link Generator */}
           <div className="flex flex-wrap items-center gap-2">
-            {/* Bright Music Control Pill */}
-            <div className="flex items-center gap-1 rounded-xl bg-blue-50 border-2 border-blue-300 px-2.5 py-1.5">
-              <button
-                type="button"
-                onClick={toggleMusic}
-                className="flex items-center gap-1.5 text-left"
-                title="Bật hoặc tắt nhạc lễ"
-              >
-                {musicPlaying ? (
-                  <Volume2 className="h-4 w-4 text-blue-700 shrink-0" />
-                ) : (
-                  <VolumeX className="h-4 w-4 text-slate-500 shrink-0" />
-                )}
-                <span className="text-xs font-extrabold text-blue-900 max-w-[115px] sm:max-w-[175px] truncate">
-                  {musicPlaying ? currentTrack.title : 'Bật Nhạc Lễ'}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleNextTrack}
-                className="ml-1 rounded-lg bg-blue-700 px-2.5 py-1 text-[11px] font-extrabold text-amber-300 hover:bg-blue-800 inline-flex items-center gap-1"
-                title="Đổi bản nhạc lễ khác"
-              >
-                <SkipForward className="h-3 w-3" />
-                <span className="hidden sm:inline">Đổi nhạc</span>
-              </button>
-            </div>
-
             <button
               type="button"
-              onClick={fireCelebration}
-              className="inline-flex items-center gap-1 rounded-xl bg-amber-400 border-2 border-amber-500 px-3 py-2 text-xs font-extrabold text-slate-950 shadow-sm hover:bg-amber-300"
+              onClick={toggleMusic}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-white border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-800 shadow-sm hover:border-blue-600 transition-colors"
+              title="Bật hoặc tắt nhạc lễ"
+              aria-label="Bật hoặc tắt nhạc lễ"
             >
-              <Sparkles className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Pháo Hoa</span>
+              {musicPlaying ? (
+                <Volume2 className="h-4 w-4 text-blue-700 shrink-0" />
+              ) : (
+                <VolumeX className="h-4 w-4 text-slate-500 shrink-0" />
+              )}
+              <span className="hidden sm:inline">
+                {musicPlaying ? 'Tắt nhạc' : 'Bật nhạc'}
+              </span>
             </button>
 
-            <button
-              type="button"
-              onClick={() => setLinkModalOpen(true)}
-              className="inline-flex items-center gap-1 rounded-xl bg-white border-2 border-slate-300 px-3 py-2 text-xs font-extrabold text-slate-800 hover:border-blue-600 hover:text-blue-700"
-              title="Tạo link mời tên riêng cho bạn bè"
-            >
-              <Link2 className="h-3.5 w-3.5 text-blue-700" />
-              <span className="hidden md:inline">Tạo link mời</span>
-            </button>
+            {isLocalMode && (
+              <button
+                type="button"
+                onClick={() => setLinkModalOpen(true)}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-3 py-2 text-xs font-bold text-yellow-300 shadow-sm hover:bg-blue-700 transition-colors"
+                title="Tạo link mời tên riêng cho bạn bè (Chỉ hiển thị ở Local)"
+              >
+                <Link2 className="h-3.5 w-3.5" />
+                <span>Tạo link mời</span>
+              </button>
+            )}
           </div>
         </div>
       </header>
 
-      {/* MAIN INTERACTIVE STAGE: 4 Tab Bright Deck */}
-      <main className="flex-1 mx-auto w-full max-w-6xl px-3 sm:px-6 py-4 sm:py-6 flex flex-col justify-center">
+      {/* MAIN INTERACTIVE STAGE */}
+      <main className="relative z-10 flex-1 mx-auto w-full max-w-6xl px-3 sm:px-6 py-4 sm:py-6 flex flex-col justify-center">
         {/* 4 Tab Switcher Bar */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4">
           {TABS.map((t) => {
@@ -195,13 +169,13 @@ export const App: React.FC = () => {
                 key={t.key}
                 type="button"
                 onClick={() => setActiveTab(t.key)}
-                className={`flex items-center justify-center gap-2 rounded-2xl py-3 px-3 text-xs sm:text-sm font-extrabold border-2 transition-all ${
+                className={`flex items-center justify-center gap-2 rounded-2xl py-3.5 px-3 text-sm sm:text-[15px] font-extrabold border-2 transition-all ${
                   isActive
-                    ? 'bg-gradient-to-r from-blue-700 to-indigo-700 text-white border-amber-400 shadow-lg scale-[1.01]'
-                    : 'bg-white text-slate-800 border-blue-200 hover:border-blue-500 hover:bg-blue-50 shadow-sm'
+                    ? 'bg-gradient-to-r from-slate-900 to-blue-700 text-white border-yellow-400 shadow-lg -translate-y-0.5'
+                    : 'bg-white/85 backdrop-blur-md text-slate-800 border-white hover:border-yellow-400 hover:bg-white shadow-sm'
                 }`}
               >
-                <Icon className={`h-4 w-4 shrink-0 ${isActive ? 'text-amber-300' : 'text-blue-700'}`} />
+                <Icon className={`h-4 w-4 shrink-0 ${isActive ? 'text-yellow-300' : 'text-blue-700'}`} />
                 <span className="hidden sm:inline">{t.label}</span>
                 <span className="sm:hidden">{t.shortLabel}</span>
               </button>
@@ -209,34 +183,34 @@ export const App: React.FC = () => {
           })}
         </div>
 
-        {/* Active Tab Card Content */}
-        <div>
+        {/* Active Tab Card Content with 3D Flip Entrance */}
+        <div key={activeTab} className="tab-enter-3d">
           {activeTab === 'main' && (
             <HeroSection guest={guest} onSelectTab={(tab) => setActiveTab(tab)} />
           )}
-          {activeTab === 'schedule' && <CountdownAndSchedule guest={guest} />}
           {activeTab === 'gallery' && <JourneyAndGallery />}
           {activeTab === 'map' && <LocationSection />}
+          {activeTab === 'tribute' && <TributeToFatherSection />}
         </div>
 
-        {/* Bright Bottom Quick Flip Bar */}
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white border-2 border-amber-400 px-4 py-2.5 shadow-md">
+        {/* Bottom Quick Flip Bar */}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white/80 backdrop-blur-md border border-yellow-400 px-4 py-2.5 shadow-md">
           <button
             type="button"
             onClick={goPrevTab}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-blue-50 border border-blue-200 px-3.5 py-2 text-xs font-extrabold text-blue-900 hover:bg-blue-100"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-white border border-slate-200 px-3.5 py-2 text-xs font-bold text-slate-900 hover:bg-slate-50"
           >
             <ChevronLeft className="h-4 w-4 text-blue-700" />
             <span>Trang trước</span>
           </button>
 
-          <div className="flex items-center gap-3 text-xs font-bold text-slate-700">
+          <div className="flex items-center gap-3 text-xs font-semibold text-slate-700">
             <span className="hidden sm:inline">
-              Đang xem: <strong className="text-blue-800">{TABS[currentTabIndex].label}</strong>
+              Đang xem: <strong className="text-blue-700">{TABS[currentTabIndex].label}</strong>
             </span>
             <a
               href={`tel:${INVITATION_CONFIG.contact.phoneRaw}`}
-              className="inline-flex items-center gap-1 text-red-700 hover:underline font-mono font-extrabold"
+              className="inline-flex items-center gap-1 text-blue-700 hover:underline font-mono font-bold"
             >
               <PhoneCall className="h-3.5 w-3.5" />
               <span>{INVITATION_CONFIG.contact.phoneDisplay}</span>
@@ -246,15 +220,14 @@ export const App: React.FC = () => {
           <button
             type="button"
             onClick={goNextTab}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-700 px-4 py-2 text-xs font-extrabold text-white shadow hover:from-blue-600 hover:to-indigo-600"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-slate-900 to-blue-700 px-4 py-2 text-xs font-bold text-white shadow hover:opacity-95"
           >
             <span>Trang tiếp theo</span>
-            <ChevronRight className="h-4 w-4 text-amber-300" />
+            <ChevronRight className="h-4 w-4 text-yellow-300" />
           </button>
         </div>
       </main>
 
-      {/* Modal tạo link cá nhân hóa dành cho Chí Hiếu */}
       <LinkGeneratorModal isOpen={linkModalOpen} onClose={() => setLinkModalOpen(false)} />
     </div>
   );

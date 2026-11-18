@@ -4,6 +4,9 @@ export interface GuestGreeting {
   selfPronoun: string;
   guestPronoun: string;
   formalLine: string;
+  invitePrefix: string;
+  inviteTarget: string;
+  inviteSuffix: string;
 }
 
 export function getGuestFromUrl(): GuestGreeting {
@@ -14,6 +17,9 @@ export function getGuestFromUrl(): GuestGreeting {
       selfPronoun: 'mình',
       guestPronoun: 'bạn',
       formalLine: 'Thân mời bạn đến chung vui cùng Chí Hiếu',
+      invitePrefix: 'Thân mời',
+      inviteTarget: 'bạn',
+      inviteSuffix: 'đến chung vui cùng Chí Hiếu',
     };
   }
 
@@ -35,6 +41,9 @@ export function getGuestFromUrl(): GuestGreeting {
       selfPronoun: 'mình',
       guestPronoun: 'bạn',
       formalLine: 'Thân mời bạn đến dự Lễ Tốt Nghiệp của Chí Hiếu',
+      invitePrefix: 'Thân mời',
+      inviteTarget: 'bạn',
+      inviteSuffix: 'đến dự Lễ Tốt Nghiệp của Chí Hiếu',
     };
   }
 
@@ -48,6 +57,9 @@ export function getGuestFromUrl(): GuestGreeting {
       selfPronoun: 'em Hiếu',
       guestPronoun: title,
       formalLine: `Trân trọng kính mời ${cleaned} đến chung vui cùng em Hiếu`,
+      invitePrefix: 'Trân trọng kính mời',
+      inviteTarget: cleaned,
+      inviteSuffix: 'đến chung vui cùng em Hiếu',
     };
   }
 
@@ -59,6 +71,9 @@ export function getGuestFromUrl(): GuestGreeting {
       selfPronoun: 'em',
       guestPronoun: title,
       formalLine: `Kính mời ${cleaned} đến dự Lễ Tốt Nghiệp của em Văn Chí Hiếu`,
+      invitePrefix: 'Kính mời',
+      inviteTarget: cleaned,
+      inviteSuffix: 'đến dự Lễ Tốt Nghiệp của em Văn Chí Hiếu',
     };
   }
 
@@ -69,6 +84,9 @@ export function getGuestFromUrl(): GuestGreeting {
       selfPronoun: 'anh Hiếu',
       guestPronoun: 'em',
       formalLine: `Thân mời ${cleaned} đến chung vui Lễ Tốt Nghiệp cùng anh Hiếu`,
+      invitePrefix: 'Thân mời',
+      inviteTarget: cleaned,
+      inviteSuffix: 'đến chung vui Lễ Tốt Nghiệp cùng anh Hiếu',
     };
   }
 
@@ -78,6 +96,8 @@ export function getGuestFromUrl(): GuestGreeting {
     selfPronoun: 'mình',
     guestPronoun: 'bạn',
     formalLine: `Thân mời ${cleaned} đến chung vui Lễ Tốt Nghiệp cùng Chí Hiếu`,
+    invitePrefix: 'Thân mời',
+    inviteTarget: cleaned,
+    inviteSuffix: 'đến chung vui Lễ Tốt Nghiệp cùng Chí Hiếu',
   };
 }
-

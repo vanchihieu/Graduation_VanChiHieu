@@ -32,10 +32,10 @@ export const INVITATION_CONFIG = {
     universityVi: 'Trường Đại học Công nghiệp TP. Hồ Chí Minh',
     universityShort: 'IUH',
     classYear: '2026',
-    heroPhoto: '/images/hero.jpg',
-    heroFallback: '/images/hero-portrait.svg',
+    heroPhoto: '/images/VanChiHieu_TrangPhuc.png',
+    heroFallback: '/images/iuh-2026-gown.jpg',
     quote:
-      'Bốn năm thanh xuân khép lại bằng hàng vạn dòng code, những đêm chạy deadline không ngủ và biết bao kỷ niệm đáng nhớ dưới mái trường IUH. Ngày khoác lên mình chiếc áo Tân Kỹ sư sẽ trọn vẹn và ý nghĩa hơn rất nhiều khi có sự hiện diện chung vui của bạn!',
+      'Bốn năm rưỡi thanh xuân khép lại bằng hàng vạn dòng code, những đêm chạy deadline không ngủ và biết bao kỷ niệm đáng nhớ dưới mái trường IUH. Ngày khoác lên mình chiếc áo Tân Kỹ sư sẽ trọn vẹn và ý nghĩa hơn rất nhiều khi có sự hiện diện chung vui của bạn!',
   },
 
   event: {
@@ -65,7 +65,7 @@ export const INVITATION_CONFIG = {
 
   music: {
     mp3Url: '/music/bgm.mp3',
-    trackTitle: 'Graduation Memories — Piano Theme',
+    trackTitle: 'Sống Như Những Đóa Hoa — Tạ Quang Thắng',
   },
 
   // Tùy chọn: Dán URL Google Apps Script Web App vào đây nếu muốn lưu RSVP về Google Sheets
@@ -129,51 +129,51 @@ export const INVITATION_CONFIG = {
   gallery: [
     {
       id: 1,
-      src: '/images/1.jpg',
+      src: '/images/HocBong1.png',
       fallback: '/images/gallery-1.svg',
-      title: 'Khoác Lễ Phục Tân Kỹ Sư',
-      caption: 'Khoảnh khắc tự hào khép lại hành trình sinh viên dưới mái trường IUH.',
-      tag: 'Graduation',
+      title: 'Thành Tích Học Bổng Tại IUH #1',
+      caption: 'Minh chứng cho những nỗ lực học tập không ngừng nghỉ trong suốt chặng đường đại học.',
+      tag: 'Scholarship',
     },
     {
       id: 2,
-      src: '/images/2.jpg',
+      src: '/images/HocBong2.png',
       fallback: '/images/gallery-2.svg',
-      title: 'Chuyên Ngành Kỹ Thuật Phần Mềm',
-      caption: 'Nơi rèn luyện tư duy logic, đam mê công nghệ và sáng tạo sản phẩm.',
-      tag: 'Software Eng',
+      title: 'Thành Tích Học Bổng Tại IUH #2',
+      caption: 'Giữ vững phong độ học tập chuyên ngành Kỹ thuật Phần mềm qua từng học kỳ.',
+      tag: 'Scholarship',
     },
     {
       id: 3,
-      src: '/images/3.jpg',
+      src: '/images/HocBong3.png',
       fallback: '/images/gallery-3.svg',
-      title: 'Góc Sân Trường 12 Nguyễn Văn Bảo',
-      caption: 'Mỗi góc hành lang, giảng đường đều lưu giữ một phần thanh xuân.',
-      tag: 'IUH Campus',
+      title: 'Thành Tích Học Bổng Tại IUH #3',
+      caption: 'Kết quả xứng đáng từ những ngày miệt mài nghiên cứu và làm đồ án.',
+      tag: 'Scholarship',
     },
     {
       id: 4,
-      src: '/images/4.jpg',
+      src: '/images/HocBong4.png',
       fallback: '/images/gallery-4.svg',
-      title: 'Hoàn Thành Đồ Án Tốt Nghiệp',
-      caption: 'Build succeeded — 0 errors, 0 warnings, trọn vẹn tâm huyết!',
-      tag: 'Milestone',
+      title: 'Thành Tích Học Bổng Tại IUH #4',
+      caption: 'Tự hào mang về liên tiếp các suất học bổng khuyến khích học tập của IUH.',
+      tag: 'Scholarship',
     },
     {
       id: 5,
-      src: '/images/5.jpg',
+      src: '/images/Banbe.png',
       fallback: '/images/gallery-5.svg',
-      title: 'Đồng Đội & Hội Bạn Đại Học',
-      caption: 'Cảm ơn những người bạn đã luôn sát cánh qua từng mùa thi và đồ án.',
-      tag: 'Teamwork',
+      title: 'Đồng Đội & Hội Bạn Thân IUH',
+      caption: 'Cảm ơn những người anh em, bạn bè đã luôn sát cánh qua từng mùa thi và đồ án.',
+      tag: 'Friends & Team',
     },
     {
       id: 6,
-      src: '/images/6.jpg',
+      src: '/images/VanChiHieu_TrangPhuc.png',
       fallback: '/images/gallery-6.svg',
-      title: 'Sẵn Sàng Cho Hành Trình Mới',
-      caption: 'Hẹn gặp bạn lúc 09:30 sáng ngày 25/11/2026 để cùng lưu lại bức ảnh đẹp nhất!',
-      tag: 'Next Chapter',
+      title: 'Khoác Lễ Phục Tân Kỹ Sư KTPM',
+      caption: 'Hẹn gặp bạn lúc 09:30 sáng ngày 25/11/2026 tại IUH để cùng lưu lại những bức ảnh đẹp nhất!',
+      tag: 'Graduation 2026',
     },
   ] as GalleryItem[],
 
@@ -188,5 +188,28 @@ export const INVITATION_CONFIG = {
       createdAt: 'Vừa xong',
     },
   ],
+
+  fatherTribute: {
+    title: 'Ký Ức Hoài Niệm & Tri Ân Ba',
+    fatherPhoto: '/images/BaVaHieu.jpg',
+    fatherFallback: '/images/father-memorial.svg',
+    fatherLabel: 'Kính nhớ Ba',
+    passedNote: 'Linh hồn Phêrô Văn Nhân • Đã về Nhà Cha',
+    bibleVerse:
+      '“Con đã đấu trong cuộc thi đấu cao đẹp, đã chạy hết chặng đường, đã giữ vững niềm tin.”',
+    bibleRef: '2 Timôthê 4,7',
+    memories: [
+      {
+        heading: 'Gửi Ba trong ngày con nhận bằng tốt nghiệp',
+        body: 'Suốt 4.5 năm đại học tại IUH, Ba vẫn luôn trọn vẹn hiện diện, sống và đồng hành bên con qua từng học kỳ. Ba chỉ vừa an nghỉ về bên Chúa gần đây khi con vừa kịp hoàn thành xong hết toàn bộ chương trình học. Dù ngày làm lễ trao bằng hôm nay không còn bóng dáng Ba đứng đợi ngoài sân trường, nhưng con tin chắc từ trên Thiên Đàng, Ba đang mỉm cười hiền hậu và tự hào nhìn xuống con.',
+      },
+      {
+        heading: 'Những dòng ký ức ấm áp bên Ba',
+        body: 'Từ lúc con biết nhớ cho đến tận bây giờ, Ba luôn là người lo lắng, che chở và không để con phải thiếu thốn bất kỳ thứ gì. Suốt những năm tháng đi học đến tận khi hoàn thành 4 năm đại học, Ba luôn âm thầm gánh vác mọi vất vả để con có điều kiện tốt nhất theo đuổi con đường Kỹ sư Phần mềm, đồng thời dạy con biết sống ngay thẳng và giữ vững đức tin Công giáo. Tình thương bao la và sự hy sinh của Ba là điều con khắc cốt ghi tâm suốt đời.',
+      },
+    ],
+    prayerText:
+      'Lạy Chúa, xin thương đón nhận linh hồn Phêrô của con vào hưởng ánh sáng tôn nhan Chúa muôn đời. Xin ban sức khỏe và bình an cho Mẹ và gia đình chúng con trong ngày vui hôm nay. Amen.',
+  },
 };
 

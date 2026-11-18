@@ -6,7 +6,8 @@
   html,
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background: linear-gradient(135deg, #f0f7ff 0%, #fffdf5 50%, #ecfeff 100%);
+    /* Nền sáng tươi trẻ đồng bộ trang phục IUH 2026: Xanh Da Trời Nhạt - Trắng Kem - Vàng Nắng */
+    background: radial-gradient(circle at 18% 15%, #dbeafe 0%, #ffffff 48%, #fef9c3 100%);
     color: #0f172a;
     overflow-x: hidden;
     min-height: 100vh;
@@ -15,19 +16,53 @@
   }
 }
 
-/* Sleek Modern Hero Name Lockup (Clean, authoritative, 100% Vietnamese-friendly) */
+/* Bộ màu Lễ Phục IUH 2026: Đen Than (#111827) + Xanh Cobalt (#2563EB) + Vàng Rực (#FACC15) */
 .hero-name-modern {
   font-family: 'Montserrat', system-ui, sans-serif;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 45%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #111827 0%, #1e3a8a 52%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 10px rgba(29, 78, 216, 0.14));
+  filter: drop-shadow(0 4px 10px rgba(37, 99, 235, 0.14));
 }
 
-/* Graduation Title Pill */
 .grad-title-badge {
-  background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
-  box-shadow: 0 6px 16px -4px rgba(37, 99, 235, 0.3);
+  background: linear-gradient(90deg, #111827 0%, #2563eb 100%);
+  box-shadow: 0 6px 16px -4px rgba(37, 99, 235, 0.35);
+}
+
+/* Khung Kính 3D Mờ Trong Suốt - Nhìn xuyên qua thấy rõ không gian 3D phía sau */
+.glass-3d-shell {
+  background: rgba(255, 255, 255, 0.54);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 24px 50px -14px rgba(30, 58, 138, 0.16),
+    0 6px 16px -4px rgba(15, 23, 42, 0.06);
+}
+
+/* Khối chứa chữ bên trong rõ nét 100% */
+.glass-3d-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(219, 234, 254, 0.95);
+  box-shadow: 0 10px 25px -8px rgba(37, 99, 235, 0.08);
+}
+
+/* 3D Tab Entrance Animation */
+@keyframes tabEnter3D {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateX(6deg) translateY(14px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1);
+  }
+}
+
+.tab-enter-3d {
+  animation: tabEnter3D 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: top center;
 }
 
 /* Custom scrollbar */
@@ -39,6 +74,6 @@
   background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #2563eb;
   border-radius: 9999px;
 }
